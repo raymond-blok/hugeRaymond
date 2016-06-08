@@ -11,7 +11,9 @@ class InfoController extends Controller
 
 	public function index()
 	{
-		$this->view->render('info/index');
+		$this->View->render('info/index', array(
+			'info' => InfoModel::getProfileInfo()
+			));
 	}
 
 	public function edit()
