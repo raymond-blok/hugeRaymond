@@ -10,21 +10,20 @@ class InfoModel
 		$query = $database->prepare($sql);
 		$query->execute(array(':user_id' => Session::get('user_id')));
 
-		return $query->fetchAll();
+		return $query->fetch();
 	}
 
-	public static function updateProfileInfo($name, $surname, $occupation, $gender, $address, $email, $mobile, $intrest)
+	public static function updateProfileInfo($name, $surname, $occupation, $gender, $address, $email, $mobile, $interest)
 	{
 		$database = DatabaseFactory::getFactory()->getConnection();
 
 		$sql = "UPDATE profiles 
-				SET name = :name, surname = :surname, occupation = :occupation, gender = :gender, address = :address, email = :email, mobile = :mobile, intrest = :intrest 
+				SET name = :name, surname = :surname, occupation = :occupation, gender = :gender, address = :address, email = :email, mobile = :mobile, interest = :interest 
 				WHERE user_id = :user_id";
 		$query = $database ->prepare($sql);
-		$query = execute(array(':name' => $name, ':surname' => $surname, ':occupation' => $occupation, ':gender' => $gender, 
-				':address' => $address, ':email' => $email, ':mobile' => $mobile, ':intrest' => $intrest, 
-				':user_id' = Session::get('user_id')));
-
+		$query->execute(array(':name' => $name, ':surname' => $surname, ':occupation' => $occupation, ':gender' => $gender, 
+				':address' => $address, ':email' => $email, ':mobile' => $mobile, ':interest' => $interest, 
+				':user_id' => Session::get('user_id')));
         if ($query->rowCount() == 1) {
             return true;
         }

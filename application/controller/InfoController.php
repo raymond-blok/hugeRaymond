@@ -18,11 +18,16 @@ class InfoController extends Controller
 
 	public function edit()
 	{
-
+		$this->View->render('info/edit', array(
+			'info' => InfoModel::getProfileInfo()
+			));
 	}
 
 	public function editSave()
 	{
-		
+		InfoModel::updateProfileInfo(
+			request::post('name'), request::post('surname'), request::post('occupation'), request::post('gender'), 
+			request::post('address'), request::post('email'), request::post('mobile'), request::post('interest'));
+			Redirect::to('info');
 	}
 }
