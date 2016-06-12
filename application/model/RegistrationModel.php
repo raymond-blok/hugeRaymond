@@ -290,4 +290,22 @@ class RegistrationModel
 		Session::add('feedback_negative', Text::get('FEEDBACK_ACCOUNT_ACTIVATION_FAILED'));
 		return false;
 	}
+	
+	public static function createNewInfo($user_id, $user_activation_verification_code)
+	{
+		$database = DatabaseFactory::getFactory()->getConnection();
+
+		$sql = "INSERT INTO profiles (user_id)
+				VALUES (:user_id)";
+		$query = $database->prepare($sql);
+		$query->execute(array(':user_id' => $user_id));
+
+		if ($query->rowCount() == 1) {
+			Session::add('feedback_positive', Text::get('FEEDBACK_ACCOUNT_ACTIVATION_SUCCESSFUL'));
+			return true;
+		}
+
+		Session::add('feedback_negative', Text::get('FEEDBACK_ACCOUNT_ACTIVATION_FAILED'));
+		return false;
+	}
 }
