@@ -55,6 +55,9 @@
                         <a href="<?php echo Config::get('URL'); ?>user/editAvatar">Edit your avatar</a>
                     </li>
                     <li <?php if (View::checkForActiveController($filename, "user")) { echo ' class="active" '; } ?> >
+                        <a href="<?php echo Config::get('URL'); ?>info/index">Change your Profile Info</a>
+                    </li>
+                    <li <?php if (View::checkForActiveController($filename, "user")) { echo ' class="active" '; } ?> >
                         <a href="<?php echo Config::get('URL'); ?>user/editusername">Edit my username</a>
                     </li>
                     <li <?php if (View::checkForActiveController($filename, "user")) { echo ' class="active" '; } ?> >

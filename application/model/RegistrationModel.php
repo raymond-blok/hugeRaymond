@@ -284,6 +284,7 @@ class RegistrationModel
 
 		if ($query->rowCount() == 1) {
 			Session::add('feedback_positive', Text::get('FEEDBACK_ACCOUNT_ACTIVATION_SUCCESSFUL'));
+			RegistrationModel::createNewInfo($user_id);
 			return true;
 		}
 
@@ -291,7 +292,7 @@ class RegistrationModel
 		return false;
 	}
 	
-	public static function createNewInfo($user_id, $user_activation_verification_code)
+	public static function createNewInfo($user_id)
 	{
 		$database = DatabaseFactory::getFactory()->getConnection();
 
